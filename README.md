@@ -2,7 +2,7 @@
 
 Exploratory data analysis examining which track and playlist features relate to
 song popularity, using the Spotify Songs dataset from
-[TidyTuesday](https://github.com/rfordatascience/tidytuesday) (~32,833 tracks).
+[TidyTuesday](https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-01-21) (~32,833 tracks).
 Completed as coursework for an M.S. in Data Science program. This EDA phase lays
 the groundwork for an upcoming predictive modeling phase.
 
