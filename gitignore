@@ -1,0 +1,19 @@
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Raw dataset (publicly available via the TidyTuesday link in the README —
+# no need to duplicate it in the repo)
+*.csv
