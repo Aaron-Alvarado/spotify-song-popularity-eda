@@ -1,47 +1,46 @@
-# Spotify Song Popularity — Exploratory Data Analysis
+# Spotify Song Popularity — EDA & Predictive Modeling
 
-Exploratory data analysis examining which track and playlist features relate to
+A two-phase project examining which track and playlist features relate to
 song popularity, using the Spotify Songs dataset from
-[TidyTuesday](https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-01-21) (~32,833 tracks).
-Completed as coursework for an M.S. in Data Science program. This EDA phase lays
-the groundwork for an upcoming predictive modeling phase.
+[TidyTuesday](https://github.com/rfordatascience/tidytuesday) (~32,833 tracks).
+Completed as a course-long project for an M.S. in Data Science program.
 
 ## Dataset
 
 - Source: TidyTuesday Spotify Songs dataset
 - ~32,833 tracks
-- Outcome variable: `track_popularity`, logit-transformed to prepare it for a
-  later linear regression model
+- Outcome variable: `track_popularity`, logit-transformed for regression modeling
 
-## Methods
+## Phase 1: Exploratory Data Analysis
 
 - Data loading and cleaning with Pandas and NumPy
 - Focused the analysis on 8 variables:
   - Categorical: `playlist_genre`, `playlist_subgenre`
   - Continuous: `danceability`, `energy`, `loudness`, `instrumentalness`,
     `valence`, `tempo`
-- Summary statistics for each variable and the transformed outcome
-- Visualizations built with Matplotlib and Seaborn:
-  - Bar charts for categorical distributions
-  - Histograms / KDE plots for continuous distributions
-  - Faceted violin plots for grouped comparisons across genres and subgenres
-  - Scatter plots with regression lines
-  - A correlation heatmap across continuous variables
+- Visualizations built with Matplotlib and Seaborn: bar charts, histograms /
+  KDE plots, faceted violin plots, scatter plots with regression lines, and a
+  correlation heatmap
+- Key finding: playlist genre and subgenre influenced popularity more than
+  any single continuous audio feature
 
-## Key Findings
+## Phase 2: Predictive Modeling
 
-- Playlist genre and subgenre influenced song popularity more than any single
-  continuous audio feature
-- Secondary relationships emerged between energy and loudness, and between
-  valence and danceability
-- Popularity consistency varied at the subgenre level even within genres that
-  looked consistent overall (e.g., Rock)
-
-## Next Steps
-
-A predictive modeling phase — a linear regression model on the
-logit-transformed popularity variable — is planned as a follow-up to this EDA.
+- Built and compared 6 linear regression models of increasing complexity,
+  from an intercept-only baseline through models with pair-wise interactions
+  and quadratic transformations
+- Standardized continuous inputs and evaluated each model's coefficients,
+  statistical significance, R-squared, and RMSE
+- Model 6 (56 coefficients) had the best training performance
+  (R-squared = 0.116, RMSE = 2.080), but 10-fold cross-validation showed
+  Model 4 (35 coefficients, all inputs, no interactions/quadratics)
+  generalized comparably — so Model 4 was selected as the better model for
+  its lower complexity
+- Most influential predictors: `playlist_subgenre`, `energy` (negative
+  effect on popularity), and `loudness` (positive effect) — consistent with
+  and extending the Phase 1 EDA findings
 
 ## Tools
 
-Python, Pandas, NumPy, Matplotlib, Seaborn, Jupyter Notebook
+Python, Pandas, NumPy, Matplotlib, Seaborn, statsmodels, scikit-learn,
+Jupyter Notebook
